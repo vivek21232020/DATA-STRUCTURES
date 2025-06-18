@@ -1,0 +1,41 @@
+EXPERIMENT - 4
+
+FREQUENCY OF EACH ELEMENT IN AN ARRAY
+
+CODE :
+
+#include <stdio.h>
+
+int main() {
+    int arr[100], n, i, j;
+    printf("Enter no. of elements: ");
+    scanf("%d", &n);
+
+    for(i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    int fr[n], visited = -1;
+
+    for(i = 0; i < n; i++) {
+        int count = 1;
+        for(j = i + 1; j < n; j++) {
+            if(arr[i] == arr[j]) {
+                count++;
+                fr[j] = visited;  // mark as counted
+            }
+        }
+        if(fr[i] != visited) {
+            fr[i] = count; // store frequency
+        }
+    }
+
+    printf("Element   Frequency\n");
+    for(i = 0; i < n; i++) {
+        if(fr[i] != visited) {
+            printf("%d \t %d\n", arr[i], fr[i]);
+        }
+    }
+
+    return 0;
+}
